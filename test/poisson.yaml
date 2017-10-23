@@ -1,0 +1,28 @@
+poisson:
+  discretization:
+    geom file: ./mesh/square/square.dmg
+    mesh file: ./mesh/square/square-serial.smb
+    assoc file: ./mesh/square/square.txt
+  dirichlet bcs:
+    bc 1: [xmin, 0.0]
+    bc 2: [ymin, 0.0]
+    bc 3: [xmax, 0.0]
+    bc 4: [ymax, 0.0]
+  poisson:
+    f: '2.0*9.86960440108935*sin(3.1415926535897*x)*sin(3.1415926535897*y)'
+  functional:
+    type: avg soln
+  primal linear algebra:
+    krylov size: 100
+    max iters: 100
+    tolerance: 1.0e-10
+    multigrid:
+      verbosity: none
+  adjoint linear algebra:
+    krylov size: 100
+    max iters: 100
+    tolerance: 1.0e-10
+    multigrid:
+      verbosity: none
+  output:
+    out file: out_poisson
