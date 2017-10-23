@@ -16,6 +16,7 @@ using Teuchos::ParameterList;
 
 static ParameterList get_valid_params() {
   ParameterList p;
+  p.set<std::string>("adjoint mode", "");
   p.sublist("discretization");
   p.sublist("dirichlet bcs");
   p.sublist("poisson");

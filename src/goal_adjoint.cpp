@@ -28,11 +28,22 @@ static void make_soln(Disc* d, Evaluators& a) {
   a.push_back(w);
 }
 
+static int get_mode(ParameterList const& p) {
+  int mode = -1;
+  auto m = p.get<std::string>("adjoint mode");
+  if (m == "full") mode = FULL;
+  else if (m == "long") mode = LONG;
+  else if (m == "single") mode = SINGLE;
+  else fail("unkown nested mode: %s", m.c_str());
+  return mode;
+}
+
 Adjoint::Adjoint(ParameterList const& p, Primal* pr) {
   params = p;
   primal = pr;
+  auto mode = get_mode(params);
   base_disc = primal->get_poisson()->get_disc();
-  nested_disc = create_nested(base_disc, SINGLE);
+  nested_disc = create_nested(base_disc, mode);
   auto poisson_params = params.sublist("poisson");
   auto func_params = params.sublist("functional");
   poisson = create_poisson(poisson_params, nested_disc);
@@ -86,10 +97,8 @@ void Adjoint::solve(const double t_now, const double t_old) {
   z->putScalar(0.0);
   goal::solve(lp, dRduT, z, dMdu, nested_disc);
   nested_disc->set_adjoint(z);
-
   auto err = - (R->dot(*z));
   print("J(u)-J(u^h) ~ %.15e", err);
-
   apf::writeVtkFiles("debug", nested_disc->get_apf_mesh());
   apf::destroyField(zu);
 }
