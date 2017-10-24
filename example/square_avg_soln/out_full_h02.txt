@@ -1,0 +1,49 @@
+reading input: in_full.yaml
+model square.dmg loaded in 0.000184 seconds
+mesh square-serial.smb loaded in 0.001099 seconds
+number of triangle 68 quad 0
+mesh entity counts: v 45 e 112 f 68 r 0
+reading association file: square.txt
+mesh reordered in 0.000175 seconds
+mesh verified in 0.000613 seconds
+ > disc: data built in 0.012258 seconds
+*** primal solve: 45 dofs
+*** at time: 0.000000
+ > jacobian computed in 0.009123 seconds
+ > linear system: num dofs 45
+ > linear system: solved in 1 iterations
+ > linear system: solved in 0.005344 seconds
+ > functional computed in 0.000131 seconds
+ > functional : avg soln
+ > J(uH) = 3.816462315357381e-01
+ > nested: full
+
+MeshAdapt: version 2.0 !
+
+MeshAdapt: iteration 0
+
+MeshAdapt: refined 112 edges in 0.001567 seconds
+
+MeshAdapt: worst element quality is 6.802715e-01
+
+MeshAdapt: mesh adapted in 0.009621 seconds
+number of triangle 272 quad 0
+mesh entity counts: v 157 e 428 f 272 r 0
+mesh reordered in 0.000471 seconds
+  - verifying tags: u_ver, n_ver
+mesh verified in 0.001146 seconds
+ > nested mesh built in 0.013628 seconds
+ > disc: data built in 0.001216 seconds
+**** adjoint solve: 157 dofs
+**** at time: 0.000000
+ > adjoint computed in 0.011673 seconds
+ > linear system: num dofs 157
+ > linear system: solved in 1 iterations
+ > linear system: solved in 0.000436 seconds
+J(u)-J(u^h) ~ 1.745328327853515e-02
+writeVtuFile into buffers: 0.000991 seconds
+writeVtuFile buffers to disk: 0.000203 seconds
+vtk files debug written in 0.001651 seconds
+writeVtuFile into buffers: 0.000090 seconds
+writeVtuFile buffers to disk: 0.000209 seconds
+vtk files out_full_0 written in 0.000473 seconds
