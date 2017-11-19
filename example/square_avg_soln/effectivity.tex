@@ -1,0 +1,26 @@
+\documentclass[border=10pt]{standalone}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{width=7cm,compat=1.8}
+
+\begin{document}
+
+\begin{tikzpicture}
+\pgfplotsset{width=6cm,compat=newest}
+\begin{semilogxaxis}[
+  title={Effectivity indices for Poisson example},
+  legend style={font=\tiny},
+  width=0.5\textwidth,
+  xlabel={Mesh size $(H)$},
+  ylabel={Effectivity index $(\mathcal{I})$},
+  cycle list name=black white,
+  legend style={at={(.05,.6)},anchor=south west},
+]
+\addplot table[x=h,y=I] {full_data.txt}; \addlegendentry{\textsc{Unif}}
+\addplot table[x=h,y=I] {long_data.txt}; \addlegendentry{\textsc{Long}}
+\addplot table[x=h,y=I] {single_data.txt}; \addlegendentry{\textsc{Single}}
+\end{semilogxaxis}
+
+\end{tikzpicture}
+
+\end{document}

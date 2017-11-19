@@ -1,0 +1,26 @@
+\documentclass[border=10pt]{standalone}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{width=7cm,compat=1.8}
+
+\begin{document}
+
+\begin{tikzpicture}
+\pgfplotsset{width=6cm,compat=newest}
+\begin{semilogxaxis}[
+  title={Degrees of freedom for Poisson example},
+  legend style={font=\tiny},
+  width=0.5\textwidth,
+  xlabel={Mesh size $(H)$},
+  ylabel={adjoint dofs / primal dofs},
+  cycle list name=black white,
+  legend style={at={(.05,.5)},anchor=south west},
+]
+\addplot table[x=h,y expr=(\thisrowno{2}/\thisrowno{1})] {full_data.txt}; \addlegendentry{\textsc{Unif}}
+\addplot table[x=h,y expr=(\thisrowno{2}/\thisrowno{1})] {long_data.txt}; \addlegendentry{\textsc{Long}}
+\addplot table[x=h,y expr=(\thisrowno{2}/\thisrowno{1})] {single_data.txt}; \addlegendentry{\textsc{Single}}
+\end{semilogxaxis}
+
+\end{tikzpicture}
+
+\end{document}
